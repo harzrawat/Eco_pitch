@@ -13,7 +13,20 @@ def create_app(config_class=Config):
 
     # Register blueprints or routes here
     from backend.auth.routes import auth_bp
+    from backend.users.routes import users_bp
+    from backend.skills.routes import skills_bp, skill_requests_bp
+    from backend.matching.routes import matching_bp, sessions_bp
+    from backend.credits.routes import credits_bp
+    from backend.payments.routes import payments_bp
+    
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
+    app.register_blueprint(users_bp, url_prefix='/api/users')
+    app.register_blueprint(skills_bp, url_prefix='/api/skills')
+    app.register_blueprint(skill_requests_bp, url_prefix='/api/skill-requests')
+    app.register_blueprint(matching_bp, url_prefix='/api/matches')
+    app.register_blueprint(sessions_bp, url_prefix='/api/sessions')
+    app.register_blueprint(credits_bp, url_prefix='/api/credits')
+    app.register_blueprint(payments_bp, url_prefix='/api/payments')
 
     @app.route('/health')
     def health_check():
